@@ -1,5 +1,16 @@
 # Toolchain Releases
 
+## v15.3.1
+
+This release only affects toolchain metadata. It has the same GCC versions as
+v15.3.0.
+
+* Changes
+  * Allow Nerves 2 to be used
+  * Remove old unused Elixir code that created compile-time dependencies with
+    Nerves tooling. Even though Nerves has stubs to silence the warnings, this
+    is a longer term fix.
+
 ## v15.3.0
 
 This release bumps GCC from 14.2 to 15.3. While the toolchain is produced in a
