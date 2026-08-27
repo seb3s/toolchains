@@ -27,8 +27,11 @@ refresh_version_info:
 generate:
 	@elixir generate_toolchains.exs
 
-build-one:
-	nerves_toolchain_armv7_nerves_linux_gnueabihf/build.sh nerves_toolchain_armv7_nerves_linux_gnueabihf/defconfig $(PWD)/o/nerves_toolchain_armv7_nerves_linux_gnueabihf
+build-armv7-gnu: generate
+	bash nerves_toolchain_armv7_nerves_linux_gnueabihf/build.sh $(PWD)/o/nerves_toolchain_armv7_nerves_linux_gnueabihf $(PWD)
+
+build-riscv64-musl: generate
+	bash nerves_toolchain_riscv64_nerves_linux_musl/build.sh $(PWD)/o/nerves_toolchain_riscv64_nerves_linux_musl $(PWD)
 
 clean:
 	@for tc in $(TOOLCHAINS); do \
@@ -69,13 +72,15 @@ help:
 	@echo "Nerves Toolchains Makefile"
 	@echo ""
 	@echo "Targets:"
-	@echo "  all (default) - Generate all toolchain packages from template"
-	@echo "  generate      - Generate all toolchain packages from template"
-	@echo "  clean         - Remove generated files from all toolchains (use with caution)"
-	@echo "  check         - Run mix checks on all generated toolchain packages"
-	@echo "  push-hex      - Push all toolchain packages to hex.pm"
-	@echo "  push-hex-docs - Update toolchain docs on hex.pm"
-	@echo "  help          - Show this help message"
+	@echo "  all (default)      - Generate all toolchain packages from template"
+	@echo "  build-armv7-gnu    - Manually build an armv7 toolchain by directly calling its build.sh script"
+	@echo "  build-riscv64-musl - Manually build a riscv64 toolchain one by directly calling its build.sh script"
+	@echo "  generate           - Generate all toolchain packages from template"
+	@echo "  clean              - Remove generated files from all toolchains (use with caution)"
+	@echo "  check              - Run mix checks on all generated toolchain packages"
+	@echo "  push-hex           - Push all toolchain packages to hex.pm"
+	@echo "  push-hex-docs      - Update toolchain docs on hex.pm"
+	@echo "  help               - Show this help message"
 	@echo ""
 	@echo "Toolchains:"
 	@for tc in $(TOOLCHAINS); do \

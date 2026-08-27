@@ -5,3 +5,4 @@
 
 # Generated toolchain directories (run 'make generate' to create)
 /nerves_toolchain_*
+/o
