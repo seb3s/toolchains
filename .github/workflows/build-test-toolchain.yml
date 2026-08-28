@@ -48,10 +48,10 @@ jobs:
         uses: actions/cache@v5
         with:
           path: ~/.nerves/dl
-          key: nerves-dl-${{ inputs.toolchain }}-linux-x86_64
+          key: nerves-dl-${{ hashFiles('toolchain_config.exs', 'configs/**/defconfig', 'template/defaults/*_defconfig') }}-${{ inputs.toolchain }}
           restore-keys: |
-            nerves-dl-${{ inputs.toolchain }}-linux-
-            nerves-dl-${{ inputs.toolchain }}-
+            nerves-dl-${{ hashFiles('toolchain_config.exs', 'configs/**/defconfig', 'template/defaults/*_defconfig') }}-
+            nerves-dl-
 
       - name: Build toolchain
         run: bash ${{ inputs.toolchain }}/build.sh "$GITHUB_WORKSPACE/o/${{ inputs.toolchain }}"
@@ -148,10 +148,10 @@ jobs:
         uses: actions/cache@v5
         with:
           path: ~/.nerves/dl
-          key: nerves-dl-${{ inputs.toolchain }}-linux-aarch64
+          key: nerves-dl-${{ hashFiles('toolchain_config.exs', 'configs/**/defconfig', 'template/defaults/*_defconfig') }}-${{ inputs.toolchain }}
           restore-keys: |
-            nerves-dl-${{ inputs.toolchain }}-linux-
-            nerves-dl-${{ inputs.toolchain }}-
+            nerves-dl-${{ hashFiles('toolchain_config.exs', 'configs/**/defconfig', 'template/defaults/*_defconfig') }}-
+            nerves-dl-
 
       - name: Build toolchain
         run: bash ${{ inputs.toolchain }}/build.sh "$GITHUB_WORKSPACE/o/${{ inputs.toolchain }}"
@@ -215,10 +215,10 @@ jobs:
         uses: actions/cache@v5
         with:
           path: ~/.nerves/dl
-          key: nerves-dl-${{ inputs.toolchain }}-darwin-aarch64
+          key: nerves-dl-${{ hashFiles('toolchain_config.exs', 'configs/**/defconfig', 'template/defaults/*_defconfig') }}-${{ inputs.toolchain }}
           restore-keys: |
-            nerves-dl-${{ inputs.toolchain }}-darwin-
-            nerves-dl-${{ inputs.toolchain }}-
+            nerves-dl-${{ hashFiles('toolchain_config.exs', 'configs/**/defconfig', 'template/defaults/*_defconfig') }}-
+            nerves-dl-
 
       - name: Build toolchain
         run: bash ${{ inputs.toolchain }}/build.sh "$GITHUB_WORKSPACE/o/${{ inputs.toolchain }}"

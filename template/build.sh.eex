@@ -233,7 +233,6 @@ build_gcc()
 {
     # Build and install ct-ng to the work directory
     cd "$WORK_DIR"
-    ln -sf "$DL_DIR" dl
     rm -fr crosstool-ng crosstool-ng-*
 
     CTNG_TAR_XZ=crosstool-ng-$CTNG_TAG.tar.xz
@@ -317,7 +316,6 @@ build_gcc()
         -e 's/^.*\(CT_LOG_DEBUG\).*$/# \1 is not set/' \
         -e 's/^.*\(CT_LOG_LEVEL_MAX\).*$/\1="EXTRA"/' \
         -e 's/^.*\(CT_LOG_PROGRESS_BAR\).*$/# \1 is not set/' \
-        -e 's/^.*\(CT_LOCAL_TARBALLS_DIR\).*$/\1="${HOME}\/src"/' \
         -e 's/^.*\(CT_SAVE_TARBALLS\).*$/\1=y/' \
         "$WORK_DIR/build/.config"
     fi
